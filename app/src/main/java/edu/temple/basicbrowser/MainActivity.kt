@@ -6,11 +6,12 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var urlEditText: EditText
-    lateinit var goButton: Button
+    lateinit var goButton: ImageButton
     lateinit var webView: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,14 @@ class MainActivity : AppCompatActivity() {
 
         // Allow your browser to intercept hyperlink clicks
         webView.webViewClient = WebViewClient()
+        webView.settings.javaScriptEnabled = true
+        webView.loadUrl("https://www.temple.edu/")
+        var text = urlEditText.text.toString()
+        goButton.setOnClickListener() {
+            webView.loadUrl("https://google.com/")
+            setTitle("yo")
+        }
+
 
     }
 }
