@@ -26,12 +26,18 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
         webView.loadUrl("https://www.temple.edu/")
-        var text = urlEditText.text.toString()
-        goButton.setOnClickListener() {
-            webView.loadUrl("https://google.com/")
-            setTitle("yo")
+        goButton.setOnClickListener {
+            var url = urlEditText.text.toString()
+            if(!(url.startsWith("https://"))) {
+                if(!(url.startsWith("www."))) {
+                    url = "https://www.$url"
+                } else {
+                    url = "https://$url"
+                }
+            }
+            setTitle(url)
+            urlEditText.setText(url)
+            webView.loadUrl(url)
         }
-
-
     }
 }
